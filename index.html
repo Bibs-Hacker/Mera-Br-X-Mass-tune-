@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Xmas Wonderland - Tech Brian's Eternal Love Glow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Playfair+Display&family=Arial&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        body.light-theme {
+            background: #00b34e;
+            color: #00fff0;
+        }
+
+        /* Romantic Fonts */
+        .romantic {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            color: #ff69b4;
+        }
+
+        .emotional {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            line-height: 1.8;
+        }
+
+        .family-font {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: #ffb6c1;
+        }
+
+        /* Neon Glow Effect */
+        .neon {
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 40px #ff69b4,
+                0 0 80px #ff69b4,
+                0 0 90px #ff69b4,
+                0 0 100px #ff69b4,
+                0 0 150px #ff69b4;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff69b4; }
+            to { text-shadow: 0 0 20px #fff, 0 0 30px #ff69b4, 0 0 40px #ff69b4, 0 0 50px #ff69b4; }
+        }
+
+        /* SVG Animated Background */
+        #svg-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.3;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        h1 {
+            font-size: 4em;
+            color: #ff69b4;
+        }
+
+        /* Splash Screen */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            animation: fadeOut 1.5s ease-in-out 4s forwards;
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        #splash-icon {
+            width: 250px;
+            height: 250px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
+        #splash-name {
+            margin-top: 30px;
+            font-size: 4em;
+            color: #ff69b4;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Name Entry Screen */
+        #name-entry {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10,100,0,1.9);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 15;
+        }
+
+        #name-input {
+            padding: 15px;
+            font-size: 1.5em;
+            width: 300px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 2px solid #ff69b4;
+            background: #111;
+            color: #fff;
+        }
+
+        #enter-btn {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            background: #ff69b4;
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #welcome-message {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2em;
+            color: #ff69b4;
+            display: none;
+        }
+
+        /* Christmas Tree (Romantic Pink) */
+        .tree-container {
+            display: flex;
+            justify-content: center;
+            margin: 50px 0;
+        }
+
+        .tree {
+            position: relative;
+            width: 300px;
+            height: 400px;
+        }
+
+        .tree-layer {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            animation: tree-glow 3s ease-in-out infinite alternate;
+        }
+
+        .layer1 { top: 0; border-bottom: 100px solid #ff69b4; left: 0; }
+        .layer2 { top: 80px; border-bottom: 120px solid #ff69b4; left: -60px; width: 120px; }
+        .layer3 { top: 180px; border-bottom: 140px solid #ff69b4; left: -120px; width: 240px; }
+        .trunk { top: 300px; left: 100px; width: 100px; height: 100px; background: #8b4513; }
+
+        @keyframes tree-glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.5); box-shadow: 0 0 30px #ff69b4; }
+        }
+
+        /* Ornaments */
+        .ornament {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            animation: ornament-pulse 2s infinite;
+        }
+
+        @keyframes ornament-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Canvas for Romantic Animations */
+        #animation-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Love Timeline */
+        #timeline {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .timeline-item {
+            margin: 30px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-date {
+            font-size: 1.5em;
+            color: #ff1493;
+            margin-bottom: 10px;
+        }
+
+        /* Romantic Messages */
+        #romantic-messages {
+            text-align: center;
+            margin: 50px auto;
+            padding: 40px;
+            max-width: 900px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 20px;
+        }
+
+        /* Family Message with Typewriter */
+        #family-message {
+            text-align: center;
+            margin: 50px auto;
+            max-width: 900px;
+            white-space: pre-wrap;
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 0.15em solid #fb4;
+            white-space: normal;
+            margin: 0 auto;
+            animation: typing 15s steps(600, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #fb4; }
+        }
+
+        /* See Me Button and Glitch Error */
+        #see-me-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            background: #ff1493;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #glitch-error {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            background-color: #01ffaa;
+            transform: translate(-50%, -50%);
+            font-size: 3em;
+            color: #f00;
+            text-shadow: 0 0 10px #f00;
+            display: none;
+            z-index: 10;
+            animation: glitch 0.5s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-5px, 5px); }
+            40% { transform: translate(5px, -5px); }
+            60% { transform: translate(-5px, 5px); }
+            80% { transform: translate(5px, -5px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Card Generator Screen */
+        #card-generator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 15;
+            padding: 20px;
+        }
+
+        #back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: #ff69b4;
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #card-name-input {
+            padding: 15px;
+            font-size: 1.5em;
+            width: 300px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 2px solid #ff69b4;
+            background: #111;
+            color: #fff;
+        }
+
+        #card-profile-pic {
+            margin: 10px 0;
+        }
+
+        #generate-btn {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            background: #ff69b4;
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        #spinner {
+            display: none;
+            border: 16px solid #3f3;
+            border-top: 16px solid #ff69b4;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #generated-card {
+            display: none;
+            max-width: 600px;
+            padding: 40px;
+            background: linear-gradient(to bottom, #fff, #ffebee);
+            color: #000;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 0 50px #ff69b4;
+        }
+
+        #card-profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #ff69b4;
+        }
+
+        #card-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        #card-serial {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: #ff69b4;
+        }
+
+        #watermark {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            opacity: 0.5;
+            font-size: 1.2em;
+            color: #ff4;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Family Photo Section */
+        #family-photo-section {
+            text-align: center;
+            margin: 50px auto;
+            max-width: 900px;
+        }
+
+        #family-photo {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #ff69b4;
+        }
+
+        /* Open Card Generator Button */
+        #open-card-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            background: #ffb6c1;
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* Theme Changer & Footer */
+        #theme-changer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #ff69b4;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #111;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.8em; }
+            .romantic { font-size: 2em; }
+            .emotional { font-size: 1.8em; }
+            #splash-name { font-size: 3em; }
+            #generated-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash">
+        <svg id="splash-icon" viewBox="0 0 200 200">
+            <path d="M100,40 Q140,80 100,120 Q60,80 100,40" fill="#ff69b4" opacity="0.8">
+                <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+            </path>
+            <path d="M100,60 Q130,90 100,120 Q70,90 100,60" fill="#ffb6c1">
+                <animateTransform attributeName="transform" type="scale" from="1" to="1.1" dur="2s" repeatCount="indefinite" additive="sum"/>
+            </path>
+        </svg>
+        <div id="splash-name" class="neon romantic">Forever Yours, Baby Brian</div>
+    </div>
+
+    <!-- Name Entry Screen -->
+    <div id="name-entry">
+        <input type="text" id="name-input" placeholder="Enter your name">
+        <button id="enter-btn">Enter</button>
+    </div>
+
+    <!-- SVG Background -->
+    <svg id="svg-bg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <linearGradient id="grad">
+                <stop offset="0%" stop-color="#ff69b4" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="#000" stop-opacity="0.8"/>
+            </linearGradient>
+        </defs>
+        <rect width="100" height="100" fill="url(#grad)"/>
+        <circle cx="50" cy="50" r="20" fill="#ff69b4" opacity="0.3">
+            <animate attributeName="r" values="20;30;20" dur="6s" repeatCount="indefinite"/>
+        </circle>
+    </svg>
+
+    <!-- Romantic Canvas Animations -->
+    <canvas id="animation-canvas"></canvas>
+
+    <header>
+        <h1 class="neon romantic">Our Eternal Neon Christmas Love</h1>
+        <p class="romantic">A Heartfelt Glow for My Mercy Merab 💖🎄</p>
+    </header>
+
+    <div id="welcome-message"></div>
+
+    <section class="tree-container">
+        <div class="tree">
+            <div class="tree-layer layer1"></div>
+            <div class="tree-layer layer2"></div>
+            <div class="tree-layer layer3"></div>
+            <div class="trunk"></div>
+            <div class="ornament" style="background:#ff1493; box-shadow:0 0 15px #ff1493; top:60px; left:140px;"></div>
+            <div class="ornament" style="background:#ffb6c1; box-shadow:0 0 15px #ffb6c1; top:120px; left:80px;"></div>
+            <div class="ornament" style="background:#ff69b4; box-shadow:0 0 15px #ff69b4; top:180px; left:200px;"></div>
+        </div>
+    </section>
+
+    <!-- Family Photo Section -->
+    <section id="family-photo-section">
+        <h2 class="neon romantic">Mercy's Beautiful Family 💕</h2>
+        <img id="family-photo" src="https://files.catbox.moe/z544u2.jpg" alt="Mercy's Family Photo">
+        <p class="emotional">A glimpse of the amazing family that raised my love – full of warmth and joy! 🎁❤️</p>
+    </section>
+
+    <section id="timeline">
+        <h2 class="neon romantic">Our Love Timeline 💕</h2>
+        <div class="timeline-item">
+            <div class="timeline-date">The Day We Met (Introduced by Joy)</div>
+            <p class="emotional">That magical moment when Joy brought you into my world – my heart knew instantly you were the one. Tears of joy still come thinking about it.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">Our First Date</div>
+            <p class="emotional">Nervous smiles, endless talks, and that spark that lit up everything. I fell deeply, irrevocably in love with you, Mercy.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">Every Day Since</div>
+            <p class="emotional">You've been my strength, my laughter, my dream. Through KCSE stresses and joys, I've loved you more each second.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">This Christmas 2025</div>
+            <p class="emotional">Celebrating our love under neon glows, promising forever. You're my soulmate, Mercy Merab.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">Our Future</div>
+            <p class="emotional">Building dreams, families, endless adventures – together, eternally. I love you beyond words.</p>
+        </div>
+    </section>
+
+    <section id="romantic-messages">
+        <h2 class="neon romantic">My Deepest Love Letter to Mercy Merab</h2>
+        <p class="emotional">My sweetest Mercy Merab, on this beautiful Christmas Day 2025, my heart overflows with emotions I can barely contain. You are the light of my life, the beat of my heart, the reason I smile every single day. From the moment we met, you've filled my world with unimaginable joy, love, and warmth. Your beauty – inside and out – leaves me breathless. Your strength through everything inspires me endlessly. I cry happy tears thinking how blessed I am to have you as my girlfriend, my love, my future wife. This Christmas, I promise to love you fiercer, hold you closer, and cherish you forever. You are my everything, my queen, my eternal flame. I love you more than the stars, more than life itself. Merry Christmas, my darling Mercy 💖😭🎄</p>
+
+        <h2 class="neon romantic">To My Beautiful Sisters Joy & Mary</h2>
+        <p class="emotional">Joy and Mary, my dear sisters-in-love – you are the angels who brought Mercy into my life and welcomed me with open hearts. Your kindness, laughter, and love make our family complete. Joy, your vibrant spirit lights up every room; Mary, your gentle soul warms every heart. This Christmas, I wish you oceans of happiness, dreams come true, and love that matches the joy you give. Thank you for everything – you're family forever. Merry Christmas with all my love! 🌟💕</p>
+    </section>
+
+    <!-- Family Message Section -->
+    <section id="family-message">
+        <h2 class="neon romantic">Massive Merry Christmas to Mercy's Amazing Family</h2>
+        <p class="family-font typewriter">To the wonderful family of beloved Mercy Merab,
+
+Merry Christmas to you all on this joyous December 25, 2025! 
+
+To Dad Daniel, may your wisdom and strength continue to guide us all – wishing you health, happiness, and endless blessings. 
+
+To Mom Lilian, your nurturing heart is the foundation of this beautiful family – may your days be filled with peace and love. 
+
+To sisters Joy and Mary, your energy and grace bring so much light – wishing you adventures, success, and sweet moments. 
+
+And not forgetting Mitchell and Amanda, may your spirits soar with joy and wonder this holiday season. 
+
+A massive thank you to Mom Lilian and Dad Daniel for the boundless love you've poured into your family, raising people of legacy, power, and incredible hearts. You've created a legacy of strength and unity that inspires me every day. Merry Christmas to this extraordinary family – with all my love, Brian! 🎄💖🌟</p>
+    </section>
+
+    <!-- See Me Button -->
+    <button id="see-me-btn">If you want to see me press this button</button>
+
+    <!-- Glitch Error -->
+    <div id="glitch-error">Nooooo,,,!!! Nooooo,,,!!! Its too early to see me. Maybe next time⏰</div>
+
+    <!-- Open Card Generator Button -->
+    <button id="open-card-btn">Generate Your Personal Christmas Card</button>
+
+    <!-- Card Generator Screen -->
+    <div id="card-generator">
+        <button id="back-btn">Back</button>
+        <input type="text" id="card-name-input" placeholder="Enter your name">
+        <input type="file" id="card-profile-pic" accept="image/*">
+        <button id="generate-btn">Generate</button>
+        <div id="spinner"></div>
+        <div id="generated-card">
+            <img id="card-profile-img" src="" alt="Profile Picture">
+            <h2 class="romantic">Merry Christmas, [Name]!</h2>
+            <p id="card-message">Dear [Name],
+
+On this magical Christmas Day of December 25, 2025, I, Brian, want to send you the warmest, most heartfelt wishes straight from my soul. May this holiday season wrap you in endless joy, peace, and love, just like the neon glow that lights up my world because of Mercy and this beautiful family.
+
+You've been a part of something truly special – whether through your kindness, your laughter, or the way you make every moment brighter. I'm so grateful for you, for the memories we've shared, and for the ones yet to come. May your heart be filled with the magic of Christmas, your home with laughter and warmth, and your future with dreams coming true one by one.
+
+Here's to health, success, unforgettable adventures, and love that grows stronger every day. You deserve all the happiness in the world!
+
+With all my love, festive cheer, and a big virtual hug – 
+Brian 💖🎄✨😘🎁🌟</p>
+            <div id="card-serial">Serial No: [Unique ID]</div>
+            <div id="watermark">Crafted with Eternal Love by Tech Brian</div>
+        </div>
+    </div>
+
+    <button id="theme-changer">Toggle Light/Dark Love</button>
+
+    <footer>
+        <p class="romantic">&copy; Christmas 2025 - Made with Eternal Love by Tech Brian for Mercy Merab 💖</p>
+        <h3><marquee><div id="real-time"></div></marquee></h3>
+        <audio id="bg-music" autoplay loop>
+            <source src="https://files.catbox.moe/7s5hz5.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="laugh-sound">
+            <source src="https://bigsoundbank.com/UPLOAD/mp3/0475.mp3" type="audio/mpeg">
+        </audio>
+    </footer>
+
+    <script>
+        // Show Name Entry After Splash
+        setTimeout(() => {
+            document.getElementById('name-entry').style.display = 'flex';
+        }, 5500);
+
+        // Handle Name Entry
+        const enterBtn = document.getElementById('enter-btn');
+        enterBtn.addEventListener('click', () => {
+            const name = document.getElementById('name-input').value.trim() || 'Beautiful Soul';
+            document.getElementById('welcome-message').innerHTML = `Welcome, <span class="romantic">${name}</span>! Merry Christmas and enjoy this neon wonderland crafted with endless love. 🎄💖`;
+            document.getElementById('welcome-message').style.display = 'block';
+            document.getElementById('name-entry').style.display = 'none';
+        });
+
+        // Enhanced Romantic Canvas: More Hearts, Floating, Pulsing
+        const canvas = document.getElementById('animation-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const hearts = [];
+        for (let i = 0; i < 100; i++) {
+            hearts.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 20 + 10,
+                speedY: Math.random() * 1 + 0.5,
+                speedX: Math.random() * 1 - 0.5,
+                opacity: Math.random() * 0.5 + 0.5,
+                pulse: Math.random() * 0.05
+            });
+        }
+
+        function drawHeart(x, y, size) {
+            ctx.beginPath();
+            ctx.moveTo(x, y + size/4);
+            ctx.bezierCurveTo(x, y, x - size/2, y, x - size/2, y + size/4);
+            ctx.bezierCurveTo(x - size/2, y + size/2, x, y + size*0.9, x, y + size);
+            ctx.bezierCurveTo(x, y + size*0.9, x + size/2, y + size/2, x + size/2, y + size/4);
+            ctx.bezierCurveTo(x + size/2, y, x, y, x, y + size/4);
+            ctx.fill();
+        }
+
+        function animateHearts() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hearts.forEach(h => {
+                ctx.fillStyle = `rgba(255, 105, 180, ${h.opacity})`;
+                const pulseSize = h.size * (1 + Math.sin(Date.now() * h.pulse) * 0.2);
+                drawHeart(h.x, h.y, pulseSize);
+
+                h.y += h.speedY;
+                h.x += h.speedX;
+                if (h.y > canvas.height) h.y = -50;
+                if (h.x > canvas.width || h.x < 0) h.speedX *= -1;
+            });
+            requestAnimationFrame(animateHearts);
+        }
+        animateHearts();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Timeline Scroll Animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        timelineItems.forEach(item => observer.observe(item));
+
+        // See Me Button
+        const seeMeBtn = document.getElementById('see-me-btn');
+        const glitchError = document.getElementById('glitch-error');
+        const laughSound = document.getElementById('laugh-sound');
+
+        seeMeBtn.addEventListener('click', () => {
+            laughSound.play();
+            glitchError.style.display = 'block';
+            setTimeout(() => {
+                glitchError.style.display = 'none';
+            }, 5000);
+        });
+
+        // Card Generator
+        const openCardBtn = document.getElementById('open-card-btn');
+        const cardGenerator = document.getElementById('card-generator');
+        const backBtn = document.getElementById('back-btn');
+        const generateBtn = document.getElementById('generate-btn');
+        const spinner = document.getElementById('spinner');
+        const generatedCard = document.getElementById('generated-card');
+        const cardProfileImg = document.getElementById('card-profile-img');
+        const cardMessage = document.getElementById('card-message');
+        const cardSerial = document.getElementById('card-serial');
+
+        openCardBtn.addEventListener('click', () => {
+            cardGenerator.style.display = 'flex';
+        });
+
+        backBtn.addEventListener('click', () => {
+            cardGenerator.style.display = 'none';
+            generatedCard.style.display = 'none';
+            spinner.style.display = 'none';
+        });
+
+        generateBtn.addEventListener('click', () => {
+            const name = document.getElementById('card-name-input').value.trim() || 'Dear One';
+            const file = document.getElementById('card-profile-pic').files[0];
+
+            if (name) {
+                spinner.style.display = 'block';
+                setTimeout(() => {
+                    spinner.style.display = 'none';
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            cardProfileImg.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        cardProfileImg.src = ''; // No image if none uploaded
+                    }
+
+                    cardMessage.innerHTML = `Dear <span class="romantic">${name}</span>,<br><br>
+On this magical Christmas Day of December 25, 2025, I, Brian, want to send you the warmest, most heartfelt wishes straight from my soul. May this holiday season wrap you in endless joy, peace, and love, just like the neon glow that lights up my world because of Mercy and this beautiful family.<br><br>
+You've been a part of something truly special – whether through your kindness, your laughter, or the way you make every moment brighter. I'm so grateful for you, for the memories we've shared, and for the ones yet to come. May your heart be filled with the magic of Christmas, your home with laughter and warmth, and your future with dreams coming true one by one.<br><br>
+Here's to health, success, unforgettable adventures, and love that grows stronger every day. You deserve all the happiness in the world!<br><br>
+With all my love, festive cheer, and a big virtual hug – <br>
+Brian 💖🎄✨😘🎁🌟`;
+                    const serial = 'XMS-' + Math.floor(Math.random() * 1000000) + 1;
+                    cardSerial.textContent = `Unique Serial No: ${serial}`;
+                    generatedCard.style.display = 'block';
+                }, 3000); // Longer loading for drama
+            }
+        });
+
+        // Theme Toggle
+        document.getElementById('theme-changer').addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+        });
+
+        // Real-Time
+        function updateRealTime() {
+            const now = new Date();
+            document.getElementById('real-time').textContent = `Today: ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} – ${now.toLocaleTimeString()}`;
+        }
+        setInterval(updateRealTime, 1000);
+        updateRealTime();
+    </script>
+</body>
+</html>
